@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        padding: 20px;
+        background-color: #f9f9f9;
+      }
+      h3 {
+        margin-top: 0;
+        color: #333;
+      }
+      label {
+        font-weight: bold;
+        margin-top: 15px;
+        display: block;
+      }
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-sizing: border-box;
+        resize: vertical;
+      }
+      button {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        margin-top: 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 15px;
+      }
+      button:hover {
+        background-color: #218838;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>🧪 Send QA Task Update</h3>
+
+    <label for="extra">📝 Extra Message (optional):</label>
+    <textarea id="extra" rows="4" placeholder="Any extra note to include in the QA Slack message..."></textarea>
+
+    <button onclick="sendData()">🚀 Send to QA Slack</button>
+
+    <script>
+      function sendData() {
+        const extraMessage = document.getElementById("extra").value;
+        google.script.run.withSuccessHandler(() => {
+          google.script.host.close();
+        }).sendSlackQATaskUpdate(extraMessage);
+      }
+    </script>
+  </body>
+</html>
